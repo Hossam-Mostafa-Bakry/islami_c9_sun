@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:islami_sun/core/theme/my_theme.dart';
 import 'package:islami_sun/moduls/home_layout.dart';
 
 class SplashView extends StatefulWidget {
@@ -24,9 +25,15 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/splash.png"), fit: BoxFit.fill),
+          image: AssetImage(
+            MyTheme.themeMode != ThemeMode.dark
+                ? "assets/images/splash.png"
+                : "assets/images/splash_dark.png",
+          ),
+          fit: BoxFit.fill,
+        ),
       ),
     );
   }

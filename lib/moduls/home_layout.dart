@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_sun/core/theme/my_theme.dart';
 import 'package:islami_sun/moduls/hadeht/hadeth_view.dart';
 import 'package:islami_sun/moduls/quran/quran_view.dart';
 import 'package:islami_sun/moduls/radio/radio_view.dart';
@@ -27,15 +29,19 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background_light.png"),
+              image: AssetImage(
+                MyTheme.themeMode != ThemeMode.dark
+                    ? "assets/images/background_light.png"
+                    : "assets/images/background_dark.png",
+              ),
               fit: BoxFit.fill)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text(
-            "Islami",
+          title: Text(
+            AppLocalizations.of(context)!.islami,
           ),
         ),
         body: screensWidget[selectedIndex],
@@ -46,26 +52,26 @@ class _HomeLayoutState extends State<HomeLayout> {
               selectedIndex = index;
             });
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: ImageIcon(AssetImage("assets/images/ic_quran.png")),
-              label: "Quran",
+              label: AppLocalizations.of(context)!.quran,
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(AssetImage("assets/images/ic_hadeht.png")),
-              label: "Hadeht",
+              label: AppLocalizations.of(context)!.hadeth,
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(AssetImage("assets/images/ic_sebha.png")),
-              label: "Tasbeh",
+              label: AppLocalizations.of(context)!.tasbeh,
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(AssetImage("assets/images/ic_radio.png")),
-              label: "Radio",
+              label: AppLocalizations.of(context)!.radio,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: "Settings",
+              label: AppLocalizations.of(context)!.setting,
             ),
           ],
         ),

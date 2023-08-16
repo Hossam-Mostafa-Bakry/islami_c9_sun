@@ -1,30 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:islami_sun/core/theme/my_theme.dart';
-import 'package:islami_sun/moduls/quran/widgets/sura_widget.dart';
+import 'package:islami_sun/moduls/hadeht/hadeth_view.dart';
 
-class QuranDetails extends StatefulWidget {
-  static const String routeName = "quran_details";
-
-  QuranDetails({
-    super.key,
-  });
-
-  @override
-  State<QuranDetails> createState() => _QuranDetailsState();
-}
-
-class _QuranDetailsState extends State<QuranDetails> {
-  String chapterContent = "";
-  List<String> verses = [];
+class HadethDetailsView extends StatelessWidget {
+  static const String routeName = "hadethScreen";
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)!.settings.arguments as HadethContent;
     var theme = Theme.of(context);
-    var args = ModalRoute.of(context)!.settings.arguments as SuraData;
-
-    if (chapterContent.isEmpty) readFile(args.suraNumber);
-
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -61,7 +45,7 @@ class _QuranDetailsState extends State<QuranDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "سورة ${args.suraName}",
+                    args.title,
                     style: theme.textTheme.bodyLarge!.copyWith(
                       color: MyTheme.themeMode != ThemeMode.dark
                           ? Colors.black
@@ -84,32 +68,25 @@ class _QuranDetailsState extends State<QuranDetails> {
                 endIndent: 20,
               ),
               Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) => Text(
-                    verses[index],
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium!.copyWith(
-                      color: MyTheme.themeMode != ThemeMode.dark
-                          ? Colors.black
-                          : const Color(0xFFFACC1D),
-                    ),
-                  ),
-                  itemCount: verses.length,
+                child: Text(
+                  args.content,
+                  style: theme.textTheme.bodyMedium!.copyWith(),
                 ),
               ),
+              // Expanded(
+              //   child: ListView.builder(
+              //     itemBuilder: (context, index) => Text(
+              //       verses[index],
+              //       textAlign: TextAlign.center,
+              //       style: const TextStyle(fontSize: 16),
+              //     ),
+              //     itemCount: verses.length,
+              //   ),
+              // ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  readFile(int suraIndex) async {
-    String text = await rootBundle.loadString("assets/files/$suraIndex.txt");
-    chapterContent = text;
-    verses = chapterContent.split("\n");
-    setState(() {});
-    print(text);
-    print(verses);
   }
 }
