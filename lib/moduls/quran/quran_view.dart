@@ -128,7 +128,7 @@ class QuranView extends StatelessWidget {
       children: [
         Image.asset("assets/images/quran_header.png"),
         Divider(
-          color: theme.primaryColor,
+          color: theme.canvasColor,
           thickness: 1.5,
         ),
         Row(
@@ -136,27 +136,21 @@ class QuranView extends StatelessWidget {
           children: [
             Text(
               "Sura Name",
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.bodyLarge,
             ),
             Container(
               height: 30,
               width: 2,
-              color: theme.primaryColor,
+              color: theme.canvasColor,
             ),
             Text(
               "Sura Name",
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.bodyLarge,
             ),
           ],
         ),
         Divider(
-          color: theme.primaryColor,
+          color: theme.canvasColor,
           thickness: 1.5,
         ),
         Expanded(

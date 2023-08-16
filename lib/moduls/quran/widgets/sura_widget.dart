@@ -29,22 +29,18 @@ class SuraWidget extends StatelessWidget {
           children: [
             Text(
               suraName,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.bodyLarge!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
             Container(
               height: 28,
               width: 2,
-              color: theme.primaryColor,
+              color: theme.canvasColor,
             ),
             Text(
               suraName,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: theme.textTheme.bodyLarge!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
           ],
         ),
